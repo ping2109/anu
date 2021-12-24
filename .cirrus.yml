@@ -12,7 +12,6 @@ task:
       memory: 32G
         
   Build-Env-Setup_background_script:
-       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
@@ -24,15 +23,14 @@ task:
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
        - mkdir -p /tmp/ccache
-       - wget http://anu.inok189.workers.dev/nusantara/ccache.tar.gz -O /tmp/ccache.tar.gz
-       - cd /tmp
-       - time tar xf ccache.tar.gz
-       - cd /tmp
   
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
+      - curl -L -o /tmp/ccache.tar.gz http://anu.inok189.workers.dev/nusantara/ccache.tar.gz
+      - cd /tmp
+      - time tar xf ccache.tar.gz
   
   Sync_script:
       - echo "============================"
