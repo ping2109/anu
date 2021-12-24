@@ -1,7 +1,5 @@
 env:
     rcloneconfig: "ENCRYPTED[81f2ea42a1bb72f5514f01604e25bb9057eb0b6f1b0f5a18434dd7175df07619a880e75ecb9597e10e69fba44553fe84]"
-    tokentl: "ENCRYPTED[635e0f6a0eba8b826946060570abec570da283211dd3be25ba50ff895855fd6f35aa1181acdbbb20ec3331f16cde6bbd]"
-    idtl: "ENCRYPTED[34e83ce99a26a43722c25a9237e72beb606357204ef3029e5fe641f449ebd90db2ae3b7a2676bf686c62ffa9606f48db]"
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
@@ -18,25 +16,25 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
-       - sudo apt install wget python3 -y
+       - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
        - mkdir -p /tmp/ccache
-  
+       - rclone copy inok:nusantara/ccache.tar.gz /tmp -P
+       - cd /tmp
+       - time tar xf ccache.tar.gz
+       - cd /tmp
+
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
-      - wget -b -c http://anu.inok189.workers.dev/nusantara/ccache.tar.gz -O /tmp/ccache.tar.gz
-      - cd /tmp
-      - time tar xf ccache.tar.gz
   
   Sync_script:
       - echo "============================"
       - echo "Syncing The Sources..."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
       - cd /tmp/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
@@ -64,9 +62,9 @@ task:
       - echo "Uploading the Build...."
       - echo "============================"
       - curl --upload-file /tmp/rom/out/target/product/juice/Nusantara*.zip https://transfer.sh
-      - ./ziping.sh
-      - cd /tmp
-      - curl --upload-file ccache.tar.gz https://transfer.sh
+#      - ./ziping.sh
+#      - cd /tmp
+#      - curl --upload-file ccache.tar.gz https://transfer.sh
       - echo " "
       - echo "============================"
       - echo "Build Uploaded Successfully!"
