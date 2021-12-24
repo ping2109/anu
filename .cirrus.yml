@@ -43,8 +43,8 @@ task:
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
       - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b superior-juice device/xiaomi/juice
-      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice --single-branch -b A11 vendor/xiaomi/juice
-      - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_bengal --single-branch -b test kernel/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
       - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
