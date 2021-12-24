@@ -22,6 +22,7 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
+       - sudo rm -rf /tmp/ccache
        - mkdir -p /tmp/ccache
        - rclone copy lynx:superior/ccache.tar.gz /tmp -P
        - cd /tmp
@@ -40,6 +41,7 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
+      - sudo rm -rf *
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/SuperiorOS/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
