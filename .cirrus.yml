@@ -22,8 +22,9 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
-       - sudo rm -rf /tmp/ccache
        - mkdir -p /tmp/ccache
+       - cd /tmp/ccache
+       - rm -rf *
        - rclone copy lynx:superior/ccache.tar.gz /tmp -P
        - cd /tmp
        - time tar xf ccache.tar.gz
