@@ -76,6 +76,7 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz lynx:superior -P
       - echo " "
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Successfully!"
       - echo "============================"
       - echo "Build Uploaded Successfully!"
       - echo "============================"
