@@ -23,9 +23,10 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
-       - mkdir -p /tmp/superior/ccache
+       - mkdir -p /tmp/ccache
+       - curl -L -o /tmp/ccache.tar.gz http://anu.inok189.workers.dev/nusantara/ccache.tar.gz
        - cd /tmp
-       - time tar xf superior.tar.gz
+       - time tar -xf ccache.tar.gz
        - cd /tmp
   
   Storage-Checker_background_script:
@@ -39,12 +40,12 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
       - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/SuperiorOS/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
-      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b superior-juice device/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
       - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice --single-branch -b A11 vendor/xiaomi/juice
-      - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_bengal --single-branch -b test kernel/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 --single-branch -b rvc-inline kernel/xiaomi/juice
       - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
       - echo "============================"
       - echo "Sync Completed!"
@@ -54,8 +55,8 @@ task:
       - echo "============================"
       - echo "Starting the Build..."
       - echo "============================"
-      - ./collect.sh
-#      - ./final.sh
+#      - ./collect.sh
+      - ./final.sh
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -64,10 +65,10 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl --upload-file /tmp/rom/out/target/product/juice/SuperiorOS*.zip https://transfer.sh
+      - curl --upload-file /tmp/rom/out/target/product/juice/Nusantara*.zip https://transfer.sh
       - ./ziping.sh
       - cd /tmp
-      - curl --upload-file superior.tar.gz https://transfer.sh
+      - curl --upload-file ccache.tar.gz https://transfer.sh
       - echo " "
       - echo "============================"
       - echo "Build Uploaded Successfully!"
