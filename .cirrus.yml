@@ -23,17 +23,16 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
+       - rclone copy lynx:superior/ccache.tar.gz /tmp -P
        - cd /tmp
-       - sudo rm ccache.tar.gz
+       - time tar xf ccache.tar.gz
+       - cd /tmp
+
  
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
-      - rclone copy lynx:superior/ccache.tar.gz /tmp -P
-      - cd /tmp
-      - time tar xf ccache.tar.gz
-      - cd /tmp
   
   Sync_script:
       - echo "============================"
@@ -77,6 +76,7 @@ task:
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz lynx:superior -P
+      - rm ccache.tar.gz
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Successfully!"
       - echo "============================"
