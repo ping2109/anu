@@ -28,7 +28,7 @@ task:
       - df -h
       - lsblk
       - ls -l -a -h
-      - curl -L -o /tmp/ccache.tar.gz http://anu.inok189.workers.dev/nusantara/ccache.tar.gz
+      - wget -c http://anu.inok189.workers.dev/nusantara/ccache.tar.gz -O /tmp/ccache.tar.gz
       - cd /tmp
       - time tar xf ccache.tar.gz
   
