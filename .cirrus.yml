@@ -57,7 +57,7 @@ task:
       - echo "============================"
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -67,9 +67,8 @@ task:
       - echo "Uploading the Build...."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip)"
-#      - rclone copy /tmp/rom/out/target/product/juice/SuperiorOS*.zip lynx:juice -P
+      - rclone copy /tmp/rom/out/target/product/juice/SuperiorOS*.zip lynx:juice -P
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Uploaded Successfully!"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Download link http://anu.inok189.workers.dev/juice/$(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip)"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
