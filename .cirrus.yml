@@ -23,9 +23,9 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
-       - mkdir -p /tmp/ccache
+       - mkdir -p /tmp/superior/ccache
        - cd /tmp
-       - time tar xf ccache.tar.gz
+       - time tar xf superior.tar.gz
        - cd /tmp
   
   Storage-Checker_background_script:
