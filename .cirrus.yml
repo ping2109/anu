@@ -67,7 +67,7 @@ task:
 #      - curl --upload-file /tmp/rom/out/target/product/juice/SuperiorOS*.zip https://transfer.sh
       - ./ziping.sh
       - cd /tmp
-      - curl --upload-file ccache.tar.gz https://transfer.sh
+      - curl --upload-file superior.tar.gz https://transfer.sh
       - echo " "
       - echo "============================"
       - echo "Build Uploaded Successfully!"
