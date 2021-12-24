@@ -26,7 +26,7 @@ task:
        - mkdir -p /tmp/ccache
        - curl -L -o /tmp/ccache.tar.gz http://anu.inok189.workers.dev/nusantara/ccache.tar.gz
        - cd /tmp
-       - time tar -xf ccache.tar.gz
+       - time tar -xzf ccache.tar.gz
        - cd /tmp
   
   Storage-Checker_background_script:
