@@ -23,15 +23,17 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:superior/ccache.tar.gz /tmp -P
        - cd /tmp
-       - time tar xf ccache.tar.gz
-       - cd /tmp
+       - sudo rm ccache.tar.gz
  
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
+      - rclone copy lynx:superior/ccache.tar.gz /tmp -P
+      - cd /tmp
+      - time tar xf ccache.tar.gz
+      - cd /tmp
   
   Sync_script:
       - echo "============================"
