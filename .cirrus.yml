@@ -1,13 +1,12 @@
 env:
-    rcloneconfig: "ENCRYPTED[81f2ea42a1bb72f5514f01604e25bb9057eb0b6f1b0f5a18434dd7175df07619a880e75ecb9597e10e69fba44553fe84]"
-    tokentl: "ENCRYPTED[635e0f6a0eba8b826946060570abec570da283211dd3be25ba50ff895855fd6f35aa1181acdbbb20ec3331f16cde6bbd]"
-    idtl: "ENCRYPTED[34e83ce99a26a43722c25a9237e72beb606357204ef3029e5fe641f449ebd90db2ae3b7a2676bf686c62ffa9606f48db]"
-
+    rcloneconfig: "ENCRYPTED[2aaa874ed2e5234375fc67c195e7e30c78ce131898eff50f3163102006cf60203fd01e00b040ceb5092a01a771de2024]"
+    tokentl: "ENCRYPTED[a283467286dfe41ddf0ce347b71d3c4eabc093b07e3f3961f073cf11b4f40154507fa2dee0b3ee8b8c1519f6d7853eb1]"
+    idtl: "ENCRYPTED[beb537072d749513bc64623e6c14b5dc34c182690c1fcff3884147aa135b64128f872e55f789dd816d7595e38b92de09]"
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
   container:
-      image: inok2341/anu:latest
+      image: 20020214/lynzx:latest
       cpu: 8
       memory: 32G
         
@@ -21,11 +20,12 @@ task:
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
-       - git config --global user.name "I-n-o-k"
-       - git config --global user.email "inok.dr189@gmail.com"
-       - mkdir -p /tmp/superior/ccache
+       - git config --global user.name "lynnnnzx"
+       - git config --global user.email "rifqikanekii140202@gmail.com"
+       - mkdir -p /tmp/ccache
+       - rclone copy lynx:superior/ccache.tar.gz /tmp -P
        - cd /tmp
-       - time tar xf superior.tar.gz
+       - time tar xf ccache.tar.gz
        - cd /tmp
   
   Storage-Checker_background_script:
@@ -37,7 +37,7 @@ task:
       - echo "============================"
       - echo "Syncing The Sources..."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/SuperiorOS/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
@@ -46,6 +46,7 @@ task:
       - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice --single-branch -b A11 vendor/xiaomi/juice
       - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_bengal --single-branch -b test kernel/xiaomi/juice
       - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
       - echo "Sync Completed!"
       - echo "============================"
@@ -56,6 +57,7 @@ task:
       - echo "============================"
       - ./collect.sh
 #      - ./final.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -64,10 +66,15 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl --upload-file /tmp/rom/out/target/product/juice/SuperiorOS*.zip https://transfer.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip)"
+#      - rclone copy /tmp/rom/out/target/product/juice/SuperiorOS*.zip lynx:juice -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Uploaded Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Download link http://anu.inok189.workers.dev/juice/$(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip)"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
-      - curl --upload-file superior.tar.gz https://transfer.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+      - rclone copy ccache.tar.gz lynx:superior -P
       - echo " "
       - echo "============================"
       - echo "Build Uploaded Successfully!"
