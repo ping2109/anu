@@ -12,4 +12,5 @@ ccache -z
 lunch superior_juice-userdebug
 export BUILD_HOSTNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
+export TZ=Asia/Jakarta
 mka bacon -j8
