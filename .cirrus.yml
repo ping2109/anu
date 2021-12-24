@@ -19,12 +19,12 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
-       - sudo apt install python3 -y
+       - sudo apt install wget python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
        - mkdir -p /tmp/ccache
-       - curl -L -o /tmp/ccache.tar.gz http://anu.inok189.workers.dev/nusantara/ccache.tar.gz
+       - wget http://anu.inok189.workers.dev/nusantara/ccache.tar.gz -O /tmp/ccache.tar.gz
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
