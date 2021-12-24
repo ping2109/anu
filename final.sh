@@ -10,4 +10,6 @@ ccache -z
 
 . build/envsetup.sh
 lunch superior_juice-userdebug
+export BUILD_HOSTNAME=lynx
+export BUILD_HOSTNAME=serber-uwu
 mka bacon -j8
