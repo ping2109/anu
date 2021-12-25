@@ -58,6 +58,10 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
+      - export BUILD_USER=lynx
+      - export BUILD_HOST=serber-uwu
+      - export BUILD_USERNAME=lynx
+      - export BUILD_HOSTNAME=serber-uwu
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
