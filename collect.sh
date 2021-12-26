@@ -10,6 +10,6 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 mka bacon -j8 &
-sleep 25m
+sleep 30m
 kill %1
 ccache -s
