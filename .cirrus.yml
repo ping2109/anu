@@ -23,9 +23,9 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - cd /tmp/ccache
-       - rm -rf *
        - rclone copy lynx:nusantara/ccache.tar.gz /tmp -P
+       - cd /tmp/ccache
+       - sudo rm -rf *
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -79,6 +79,9 @@ task:
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz lynx:nusantara -P
+      - export CCACHE_DIR=/tmp/ccache
+      - export CCACHE_EXEC=$(which ccache)
+      - ccache --clear
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
