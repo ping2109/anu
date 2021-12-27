@@ -10,7 +10,7 @@ task:
       cpu: 8
       memory: 32G
 
-  Build-Env-Setup_background_script:
+  Build-Env-Setup_script:
        - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
@@ -22,12 +22,10 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
-       - mkdir -p /tmp/ccache
-       - rclone copy lynx:exthmui/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
-       - cd /tmp
-       - time tar xf ccache.tar.gz
+#       - mkdir -p /tmp/ccache
+#       - rclone copy lynx:exthmui/ccache.tar.gz /tmp -P
+#       - cd /tmp
+#       - time tar xf ccache.tar.gz
        - cd /tmp
 
   Storage-Checker_background_script:
@@ -41,10 +39,9 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - rm -rf *
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android -b exthm-11 -g default,-device,-mips,-darwin,-notdefault
       - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b main .repo/local_manifests
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+#      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
 #      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
 #      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
