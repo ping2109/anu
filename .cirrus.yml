@@ -24,7 +24,7 @@ task:
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
        - rclone copy lynx:exthmui/ccache.tar.gz /tmp -P
-       - rclone copy lynx:exthmui/out.tar.gz /tmp/rom -P
+#       - rclone copy lynx:exthmui/out.tar.gz /tmp/rom -P
        - cd /tmp/ccache
        - sudo rm -rf *
        - cd /tmp
