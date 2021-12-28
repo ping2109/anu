@@ -8,7 +8,7 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 
-. build/envsetup.sh
+source build/envsetup.sh
 lunch fuse_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
