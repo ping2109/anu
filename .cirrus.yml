@@ -47,7 +47,7 @@ task:
       - df -h
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android -b exthm-11 -g default,-device,-mips,-darwin,-notdefault
       - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b main .repo/local_manifests
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
 #      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
 #      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
