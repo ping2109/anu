@@ -20,10 +20,11 @@ task:
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
+       - ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:superior/ccache.tar.gz /tmp -P
+       - rclone copy lynx:fusion/ccache.tar.gz /tmp -P
        - cd /tmp/ccache
        - sudo rm -rf *
        - cd /tmp
@@ -42,8 +43,8 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/SuperiorOS/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b main .repo/local_manifests
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Fusion-OS/android_manifest -b twelve -g default,-device,-mips,-darwin,-notdefault
+      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b twelve-fusion .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
 #      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b superior-juice device/xiaomi/juice
@@ -60,9 +61,9 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Completed!"
+      - ./collect.sh
+#      - ./final.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls FusionOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -71,14 +72,14 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/SuperiorOS*.zip lynx:juice -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls FusionOS*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/FusionOS*.zip lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls FusionOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-#      - ./ziping.sh
-#      - cd /tmp
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-#      - rclone copy ccache.tar.gz lynx:superior -P
+      - ./ziping.sh
+      - cd /tmp
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+      - rclone copy ccache.tar.gz lynx:fusion -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
