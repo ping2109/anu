@@ -43,6 +43,8 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
+      - sudo rm -rf *
+      - df -h
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android -b exthm-11 -g default,-device,-mips,-darwin,-notdefault
       - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b main .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
@@ -61,21 +63,10 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
+      - ./collect.sh
 #      - ./final.sh
-      - cd /tmp/rom
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - export USE_CCACHE=1
-      - ccache -M 20G
-      - ccache -o compression=true
-      - ccache -z
-      - source build/envsetup.sh
-      - lunch exthm_juice-userdebug
-      - export BUILD_USERNAME=lynx
-      - export BUILD_HOSTNAME=serber-uwu
-      - export TZ=Asia/Jakarta
-      - mka bacon -j$(nproc --all)
+      - cd /tmp/rom/out/target/product/juice
+      - sudo rm -rf *
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls exthm-*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
