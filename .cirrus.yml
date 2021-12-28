@@ -20,6 +20,7 @@ task:
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
+       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
