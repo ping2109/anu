@@ -12,5 +12,6 @@ ccache -z
 lunch superior_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
+export SELINUX_IGNORE_NEVERALLOWS=true
 export TZ=Asia/Jakarta
-mka bacon -j8
+make fuse-prod -j8
