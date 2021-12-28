@@ -9,9 +9,8 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch fuse_juice-userdebug
+lunch superior_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
-export SELINUX_IGNORE_NEVERALLOWS=true
 export TZ=Asia/Jakarta
-make fuse-prod -j8
+mka bacon -j8
