@@ -24,11 +24,13 @@ task:
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
        - rclone copy lynx:exthmui/ccache.tar.gz /tmp -P
+       - rclone copy lynx:exthmui/out.tar.gz /tmp/rom -P
        - cd /tmp/ccache
        - sudo rm -rf *
        - cd /tmp
        - time tar xf ccache.tar.gz
-       - cd /tmp
+       - cd /tmp/rom
+       - time tar xf out.tar.gz
 
   Storage-Checker_background_script:
       - df -h
@@ -91,6 +93,9 @@ task:
 #      - cd /tmp
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
 #      - rclone copy ccache.tar.gz lynx:exthmui -P
+      - ./ziping_out.sh
+      - cd /tmp/rom
+      - rclone copy out.tar.gz lynx:exthmui -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
