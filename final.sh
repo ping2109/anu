@@ -9,7 +9,7 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch superior_juice-userdebug
+lunch aosp_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export TZ=Asia/Jakarta
