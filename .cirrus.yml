@@ -44,13 +44,18 @@ task:
       - cd /tmp/rom
       - rm -rf *
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b nad-ysl .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
-      # DT/VT/KT/TC
-#      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
-#      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
+      # DT,VT,KT
+      - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl device/xiaomi/ysl
+      - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl-1 -b r11.0 vendor/xiaomi/ysl
+      - git clone --depth=1 https://github.com/lynnnnzx/Logan_Ysl -b xr kernel/xiaomi/ysl
+      # HALS
+      - rm -rf hardware/qcom-caf/msm8996/audio
+      - rm -rf hardware/qcom-caf/msm8996/display
+      - rm -rf hardware/qcom-caf/msm8996/media
+      - git clone --depth=1 https://github.com/Jabiyeff/android_hardware_qcom_audio -b caf-msm8996-r hardware/qcom-caf/msm8996/audio
+      - git clone --depth=1 https://github.com/Jabiyeff/android_hardware_qcom_display -b caf-msm8996-r hardware/qcom-caf/msm8996/display
+      - git clone --depth=1 https://github.com/Jabiyeff/android_hardware_qcom_media -b caf-msm8996-r hardware/qcom-caf/msm8996/media
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
       - echo "Sync Completed!"
