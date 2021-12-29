@@ -61,6 +61,7 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+      - export ALLOW_MISSING_DEPENDENCIES=true
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) Completed!"
