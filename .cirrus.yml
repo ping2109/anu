@@ -49,6 +49,7 @@ task:
       - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl device/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl-1 -b r11.0 vendor/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/Logan_Ysl -b xr kernel/xiaomi/ysl
+      - git clone --depth=1 https://github.com/lynnnnzx/gcc-arm64 -b gcc-master prebuilts/gcc/linux-x86/aarch64/eva-gcc
       # HALS
       - rm -rf hardware/qcom-caf/msm8996/audio
       - rm -rf hardware/qcom-caf/msm8996/display
