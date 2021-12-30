@@ -28,7 +28,7 @@ task:
        - cd /tmp/ccache
        - sudo rm -rf *
        - cd /tmp
-#       - time tar xf ccache.tar.gz
+       - time tar xf ccache.tar.gz
        - cd /tmp
  
   Storage-Checker_background_script:
