@@ -48,7 +48,7 @@ task:
       # DT,VT,KT
       - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl device/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl-1 -b r11.0 vendor/xiaomi/ysl
-      - git clone --depth=1 https://github.com/lynnnnzx/Logan_Ysl -b xr kernel/xiaomi/ysl
+      - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_ysl -b eleven kernel/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/gcc-arm64 -b gcc-master prebuilts/gcc/linux-x86/aarch64/eva-gcc
       # HALS
       - rm -rf hardware/qcom-caf/msm8996/audio
@@ -67,6 +67,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
+      - export KBUILD_BUILD_USER=LynZx
+      - export KBUILD_BUILD_HOST=Serber-UWU
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) Completed!"
