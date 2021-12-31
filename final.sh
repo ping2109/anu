@@ -9,11 +9,11 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch evolution_juice-user
+lunch palladium_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export SELINUX_IGNORE_NEVERALLOWS=true
 export TZ=Asia/Jakarta
-mka evolution -j8
+mka palladium -j8
