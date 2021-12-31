@@ -24,7 +24,7 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:evolution/ccache.tar.gz /tmp -P
+       - rclone copy lynx:palladium/ccache.tar.gz /tmp -P
        - cd /tmp/ccache
        - sudo rm -rf *
        - cd /tmp
@@ -43,14 +43,13 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - rm -rf *
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Evolution-X/manifest -b snow -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b twelve-evox .repo/local_manifests
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Palladium-OS/platform_manifest.git -b 12 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
-#      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
-#      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
+      - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_juice -b twelve-palladium device/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_juice -b twelve vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
+      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
       - echo "Sync Completed!"
@@ -63,7 +62,7 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls PalladiumOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -72,14 +71,14 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/evolution_juice*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls PalladiumOS*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/PalladiumOS*.zip lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls PalladiumOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:evolution -P
+      - rclone copy ccache.tar.gz lynx:palladium -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
