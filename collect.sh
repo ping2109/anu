@@ -10,7 +10,7 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 mka evolution -j8 &
-sleep 90m
+sleep 10m
 kill %1
 ccache -s
 
