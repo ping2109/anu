@@ -61,10 +61,6 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-      - export BUILD_USERNAME=lynx
-      - export BUILD_HOSTNAME=serber-uwu
-      - export KBUILD_BUILD_USER=LynZx
-      - export KBUILD_BUILD_HOST=Serber-UWU
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Completed!"
