@@ -35,7 +35,7 @@ task:
       - df -h
       - lsblk
       - ls -l -a -h
-  
+ 
   Sync_script:
       - echo "============================"
       - echo "Syncing The Sources..."
