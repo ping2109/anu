@@ -43,8 +43,8 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - rm -rf *
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Evolution-X/manifest -b snow -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b twelve-evox .repo/local_manifests
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Evolution-X/manifest -b elle -g default,-device,-mips,-darwin,-notdefault
+      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b evox-juice .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
 #      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
@@ -65,7 +65,6 @@ task:
       - export BUILD_HOSTNAME=serber-uwu
       - export KBUILD_BUILD_USER=LynZx
       - export KBUILD_BUILD_HOST=Serber-UWU
-      - export SELINUX_IGNORE_NEVERALLOWS=true
       - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Completed!"
