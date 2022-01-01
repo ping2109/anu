@@ -82,6 +82,7 @@ task:
       - zip -r9 ccache.zip ccache/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.zip lynx:evolution -P
+      - rm ccache.zip
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
