@@ -2,7 +2,7 @@
 cd /tmp/rom
 
 . build/envsetup.sh
-lunch evolution_juice-userdebug
+lunch evolution_juice-user
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
