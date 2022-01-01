@@ -18,17 +18,18 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
-       - sudo apt install python3 -y
+       - sudo apt install zip unzip python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:evolution/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
+       - export CCACHE_DIR=/tmp/ccache
+       - export CCACHE_EXEC=$(which ccache)
+       - ccache --clear
+       - rclone copy lynx:evolution/ccache.zip /tmp -P
        - cd /tmp
-       - time tar xf ccache.tar.gz
+       - time unzip ccache.zip
        - cd /tmp
  
   Storage-Checker_background_script:
@@ -76,13 +77,11 @@ task:
 #      - rclone copy /tmp/rom/out/target/product/juice/evolution_juice*.zip lynx:juice -P
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-      - ./ziping.sh
+#      - ./ziping.sh
       - cd /tmp
+      - zip -r9 ccache.zip ccache/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:evolution -P
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - ccache --clear
+      - rclone copy ccache.zip lynx:evolution -P
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
