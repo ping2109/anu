@@ -26,7 +26,9 @@ task:
        - mkdir -p /tmp/ccache
        - rclone copy lynx:evolution/ccache.tar.gz /tmp -P
        - cd /tmp
-       - sudo rm -rf ccache/*
+       - export CCACHE_DIR=/tmp/ccache
+       - export CCACHE_EXEC=$(which ccache)
+       - ccache --clear
        - time tar xf ccache.tar.gz
        - rm ccache.tar.gz
        - cd /tmp
@@ -80,6 +82,9 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz lynx:evolution -P
       - rm ccache.tar.gz
+      - export CCACHE_DIR=/tmp/ccache
+      - export CCACHE_EXEC=$(which ccache)
+      - ccache --clear
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
