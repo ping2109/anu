@@ -24,11 +24,11 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:evolution/out.zip /tmp -P
+       - rclone copy lynx:evolution/ccache.tar.gz /tmp -P
        - cd /tmp
-       - rm -rf rom/*
-       - time unzip out.zip
-       - rm out.zip
+       - sudo rm -rf ccache/*
+       - time tar xf ccache.tar.gz
+       - rm ccache.tar.gz
        - cd /tmp
  
   Storage-Checker_background_script:
@@ -75,13 +75,11 @@ task:
 #      - rclone copy /tmp/rom/out/target/product/juice/evolution_juice*.zip lynx:juice -P
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls evolution_juice*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-#      - ./ziping.sh
+      - ./ziping.sh
       - cd /tmp
-      - rm -rf rom/out/target/product/juice
-      - zip -r9 out.zip rom/out/
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy out.zip lynx:evolution -P
-      - rm out.zip
+      - rclone copy ccache.tar.gz lynx:evolution -P
+      - rm ccache.tar.gz
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
