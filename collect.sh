@@ -15,7 +15,7 @@ export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
 mka evolution -j8 &
-sleep 60m
+sleep 30m
 kill %1
 ccache -s
 
