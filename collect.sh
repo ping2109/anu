@@ -2,7 +2,7 @@
 cd /tmp/rom
 
 . build/envsetup.sh
-lunch evolution_juice-user
+lunch evolution_juice-userdebug
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
@@ -15,7 +15,7 @@ export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
 mka evolution -j8 &
-sleep 30m
+sleep 90m
 kill %1
 ccache -s
 
