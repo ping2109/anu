@@ -9,7 +9,7 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch evolution_juice-user
+lunch evolution_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
