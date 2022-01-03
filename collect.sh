@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /tmp/rom
-
+ 
 . build/envsetup.sh
 lunch conquer_juice-userdebug
 export CCACHE_DIR=/tmp/ccache
