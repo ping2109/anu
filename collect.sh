@@ -18,4 +18,3 @@ make carthage -j8 &
 sleep 95m
 kill %1
 ccache -s
-
