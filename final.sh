@@ -15,4 +15,4 @@ export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
-mka carthage -j8
+make carthage -j8
