@@ -9,10 +9,10 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch nad_juice-userdebug
+lunch lineage_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
-export KBUILD_BUILD_HOST=Serber-UWU
+export KBUILD_BUILD_HOST=Cirrus-CI
 export TZ=Asia/Jakarta
-mka nad -j8
+mka bacon -j8
