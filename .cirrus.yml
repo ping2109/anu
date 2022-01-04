@@ -28,10 +28,13 @@ task:
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
        - rclone copy lynx:conquer/ccache.tar.gz /tmp -P
+       - rclone copy lynx:conquer/out.tar.gz /tmp/rom -P
        - cd /tmp
        - time tar xf ccache.tar.gz
        - rm ccache.tar.gz
-       - cd /tmp
+       - cd /tmp/rom
+       - time tar xf out.tar.gz
+       - rm out.tar.gz
 
   Storage-Checker_background_script:
       - df -h
@@ -63,8 +66,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-      - ./collect.sh
-#      - ./final.sh
+#      - ./collect.sh
+      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -74,18 +77,18 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/ConquerOS*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Uploaded Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) To Your Drive"
+      - rclone copy /tmp/rom/out/target/product/juice/ConquerOS*.zip lynx:juice -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-      - sudo bash ziping_out.sh
-#      - ./ziping.sh
-#      - cd /tmp
+#      - sudo bash ziping_out.sh
+      - ./ziping.sh
+      - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-#      - rclone copy ccache.tar.gz lynx:conquer -P
-#      - rm ccache.tar.gz
-      - cd /tmp/rom
-      - rclone copy out.tar.gz lynx:conquer -P
+      - rclone copy ccache.tar.gz lynx:conquer -P
+      - rm ccache.tar.gz
+#      - cd /tmp/rom
+#      - rclone copy out.tar.gz lynx:conquer -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
