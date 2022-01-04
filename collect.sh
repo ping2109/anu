@@ -15,6 +15,6 @@ export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
 make carthage -j8 &
-sleep 95m
+sleep 40m
 kill %1
 ccache -s
