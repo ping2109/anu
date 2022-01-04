@@ -2,7 +2,7 @@
 cd /tmp/rom
 
 . build/envsetup.sh
-lunch nad_juice-userdebug
+lunch lineage_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
@@ -13,7 +13,7 @@ export USE_CCACHE=1
 ccache -M 20G
 ccache -o compression=true
 ccache -z
-make nad -j8 &
+mka bacon -j8 &
 sleep 90m
 kill %1
 ccache -s
