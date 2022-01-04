@@ -80,10 +80,10 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - sudo bash ziping_out.sh
 #      - ./ziping.sh
-      - cd /tmp
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+#      - cd /tmp
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
 #      - rclone copy ccache.tar.gz lynx:conquer -P
-      - rm ccache.tar.gz
+#      - rm ccache.tar.gz
       - cd /tmp/rom
       - rclone copy out.tar.gz lynx:conquer -P
       - export CCACHE_DIR=/tmp/ccache
