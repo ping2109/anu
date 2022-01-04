@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd /tmp/rom
-rm -rf out/target/product/juice
 
 com ()
 {
