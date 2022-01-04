@@ -78,7 +78,7 @@ task:
 #      - rclone copy /tmp/rom/out/target/product/juice/ConquerOS*.zip lynx:juice -P
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-      - ./ziping_out.sh
+      - sudo bash ziping_out.sh
 #      - ./ziping.sh
       - cd /tmp
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
