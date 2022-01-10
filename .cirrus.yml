@@ -24,9 +24,10 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:nusantara/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
+       - rclone copy lynx:stormbreaker/ccache.tar.gz /tmp -P
+       - export CCACHE_DIR=/tmp/ccache
+       - export CCACHE_EXEC=$(which ccache)
+       - ccache --clear
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -63,7 +64,7 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls StormbreakerOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -72,14 +73,14 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/Nusantara*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls StormbreakerOS*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/StormbreakerOS*.zip lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls StormbreakerOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:nusantara -P
+      - rclone copy ccache.tar.gz lynx:stormbreaker -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
