@@ -8,11 +8,11 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 
-. build/envsetup.sh
-lunch nad_juice-userdebug
+source build/envsetup.sh
+lunch stormbreaker_juice-userdebug
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
 export KBUILD_BUILD_USER=LynZx
 export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
-mka nad -j8
+make storm-prod -j8
