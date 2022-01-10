@@ -62,6 +62,8 @@ task:
       - echo "============================"
       - echo "Starting the Build..."
       - echo "============================"
+      - export SELINUX_IGNORE_NEVERALLOWS=true
+      - export TZ=Asia/Jakarta
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
       - ./collect.sh
 #      - ./final.sh
