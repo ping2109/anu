@@ -27,14 +27,11 @@ task:
        - export CCACHE_DIR=/tmp/ccache
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
-       - rclone copy lynx:conquer/ccache.tar.gz /tmp -P
-       - rclone copy lynx:conquer/out.tar.gz /tmp/rom -P
+       - rclone copy lynx:legion/ccache.tar.gz /tmp -P
        - cd /tmp
        - time tar xf ccache.tar.gz
        - rm ccache.tar.gz
-       - cd /tmp/rom
-       - time tar xf out.tar.gz
-       - rm out.tar.gz
+       - cd /tmp
 
   Storage-Checker_background_script:
       - df -h
@@ -48,8 +45,8 @@ task:
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - rm -rf *
-      - repo init -q --no-repo-verify --depth=1 -u git://github.com/ConquerOS/manifest.git -b eleven -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b conquer-juice .repo/local_manifests
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Project-LegionOS/manifest.git -b 12 -g default,-device,-mips,-darwin,-notdefault
+      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b twelve-legion .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
 #      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b evox-juice device/xiaomi/juice
@@ -66,9 +63,21 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
+      - . build/envsetup.sh
+      - lunch legion_juice-userdebug
+      - export CCACHE_DIR=/tmp/ccache
+      - export CCACHE_EXEC=$(which ccache)
+      - export USE_CCACHE=1
+      - ccache -M 20G
+      - ccache -o compression=true
+      - ccache -z
+      - make legion -j8 &
+      - sleep 30m
+      - kill %1
+      - ccache -s
 #      - ./collect.sh
-      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Completed!"
+#      - ./final.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls LegionOS*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -77,18 +86,15 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/ConquerOS*.zip lynx:juice -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ConquerOS*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls LegionOS*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/LegionOS*.zip lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls LegionOS*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-#      - sudo bash ziping_out.sh
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:conquer -P
+      - rclone copy ccache.tar.gz lynx:legion -P
       - rm ccache.tar.gz
-#      - cd /tmp/rom
-#      - rclone copy out.tar.gz lynx:conquer -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
