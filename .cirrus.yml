@@ -63,19 +63,7 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-      - . build/envsetup.sh
-      - lunch legion_juice-userdebug
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - export USE_CCACHE=1
-      - ccache -M 20G
-      - ccache -o compression=true
-      - ccache -z
-      - make legion -j8 &
-      - sleep 30m
-      - kill %1
-      - ccache -s
-#      - ./collect.sh
+      - ./collect.sh
 #      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls LegionOS*.zip) Completed!"
       - echo "============================"
