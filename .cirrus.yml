@@ -24,14 +24,8 @@ task:
        - git config --global user.name "I-n-o-k"
        - git config --global user.email "inok.dr189@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:sakura/ccache.tar.gz /tmp -P
-       - rclone copy lynx:sakura/out.tar.gz /tmp/rom
-       - cd /tmp
-       - export CCACHE_DIR=/tmp/ccache
-       - export CCACHE_EXEC=$(which ccache)
-       - ccache --clear
-       - time tar xf ccache.tar.gz
-       - rm ccache.tar.gz
+#       - rclone copy lynx:sakura/ccache.tar.gz /tmp -P
+       - rclone copy lynx:sakura/out.tar.gz /tmp/rom -P
        - cd /tmp/rom
        - time tar xf out.tar.gz
        - rm out.tar.gz
@@ -48,7 +42,6 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - rm -rf *
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android.git -b 11 -g default,-device,-mips,-darwin,-notdefault
       - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b sakura .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
@@ -67,8 +60,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-      - ./collect.sh
-#      - ./final.sh
+#      - ./collect.sh
+      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -78,23 +71,23 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/ProjectSakura*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Uploaded Successfully!"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-      - sudo whoami
-      - sudo bash ziping_out.sh
-      - cd /tmp/rom
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) To Your Drive"
+      - rclone copy /tmp/rom/out/target/product/juice/ProjectSakura*.zip lynx:juice -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
+#      - sudo whoami
+#      - sudo bash ziping_out.sh
+#      - cd /tmp/rom
 #      - ./ziping.sh
 #      - cd /tmp
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
 #      - rclone copy ccache.tar.gz lynx:sakura -P
-      - rclone copy out.tar.gz lynx:sakura -P
+#      - rclone copy out.tar.gz lynx:sakura -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
       - echo " "
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
       - echo "Build Uploaded Successfully!"
       - echo "============================"
