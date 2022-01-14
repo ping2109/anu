@@ -11,8 +11,8 @@ ccache -z
 . build/envsetup.sh
 lunch nad_juice-userdebug
 export BUILD_USERNAME=lynx
-export BUILD_HOSTNAME=serber-uwu
+export BUILD_HOSTNAME=cirrus-ci
 export KBUILD_BUILD_USER=LynZx
-export KBUILD_BUILD_HOST=Serber-UWU
+export KBUILD_BUILD_HOST=Cirrus-CI
 export TZ=Asia/Jakarta
 mka nad -j8

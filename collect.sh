@@ -4,9 +4,9 @@ cd /tmp/rom
 . build/envsetup.sh
 lunch nad_juice-userdebug
 export BUILD_USERNAME=lynx
-export BUILD_HOSTNAME=serber-uwu
+export BUILD_HOSTNAME=cirrus-ci
 export KBUILD_BUILD_USER=LynZx
-export KBUILD_BUILD_HOST=Serber-UWU
+export KBUILD_BUILD_HOST=Cirrus-CI
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
