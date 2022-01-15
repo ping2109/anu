@@ -10,6 +10,6 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 make nad -j8 &
-sleep 90m
+sleep 60m
 kill %1
 ccache -s
