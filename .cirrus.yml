@@ -48,7 +48,7 @@ task:
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT,VT,KT
       - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl-10 device/xiaomi/ysl
-      - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl-1 -b r10.0 vendor/xiaomi
+      - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl -b 10 vendor/xiaomi
       - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_ysl -b nad-1 kernel/xiaomi/ysl
       # HALS
       - rm -rf hardware/qcom-caf/msm8996/audio
