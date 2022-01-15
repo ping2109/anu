@@ -49,7 +49,8 @@ task:
       # DT,VT,KT
       - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl-10 device/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl -b 10 vendor/xiaomi
-      - git clone --depth=1 https://github.com/lynnnnzx/Logan_Ysl -b xr kernel/xiaomi/ysl
+      - git clone --depth=1 https://github.com/MiDoNaSR545/android_kernel_xiaomi_ysl -b eleven kernel/xiaomi/ysl
+      - git clone --depth=1 https://github.com/AnggaR96s/GengKapak-clang -b main prebuilts/clang/host/linux-x86/clang-gengkapak
       # HALS
       - rm -rf hardware/qcom-caf/msm8996/audio
       - rm -rf hardware/qcom-caf/msm8996/display
