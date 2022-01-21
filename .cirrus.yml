@@ -6,7 +6,7 @@ task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
   container:
-      image: 20020214/lynzx:latest
+      image: inok2341/anu:latest
       cpu: 8
       memory: 32G
  
@@ -23,9 +23,10 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:botleg/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
+       - rclone copy lynx:exthmui/ccache.tar.gz /tmp -P
+       - export CCACHE_DIR=/tmp/ccache
+       - export CCACHE_EXEC=$(which ccache)
+       - ccache --clear
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -41,15 +42,13 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - sudo rm -rf *
-      - df -h
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/Bootleggers-BrokenLab/manifest.git -b rimbon -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b botleg .repo/local_manifests
+      - rm -rf *
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/exthmui/android.git -b exthm-11 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
-#      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_sm6115 -b exthmui device/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
 #      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
@@ -61,9 +60,11 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
+      - export TZ=Asia/Jakarta
+      - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls BootleggersROM*.zip) Completed!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls exthm-11.0*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -72,14 +73,14 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls BootleggersROM*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/BootleggersROM*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls BootleggersROM*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls exthm-11.0*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/exthm-11.0*.zip lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls exthm-11.0*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:botleg -P
+      - rclone copy ccache.tar.gz lynx:exthmui -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
