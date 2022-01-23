@@ -32,6 +32,8 @@ task:
       - curl -O $build
       - chmod +x build.sh
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+      - export LANGUAGE=en_US.UTF-8
+      - export LC_ALL=en_US.UTF-8
       - export BOT_TOKEN=$tokentl
       - export CHAT_ID=$idtl
       - ./build.sh
