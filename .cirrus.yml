@@ -1,7 +1,9 @@
 env:
     rcloneconfig: "ENCRYPTED[2aaa874ed2e5234375fc67c195e7e30c78ce131898eff50f3163102006cf60203fd01e00b040ceb5092a01a771de2024]"
-    tokentl: "ENCRYPTED[278f3e180162157a66d5ecdcf54bb8a7189ae0d469d0e95018347b778a634ca8f6903a67407b27ff64ad5ca4b75a679d]"
-    idtl: "ENCRYPTED[beb537072d749513bc64623e6c14b5dc34c182690c1fcff3884147aa135b64128f872e55f789dd816d7595e38b92de09]"
+    BOT_TOKEN: "ENCRYPTED[278f3e180162157a66d5ecdcf54bb8a7189ae0d469d0e95018347b778a634ca8f6903a67407b27ff64ad5ca4b75a679d]"
+    CHAT_ID: "ENCRYPTED[beb537072d749513bc64623e6c14b5dc34c182690c1fcff3884147aa135b64128f872e55f789dd816d7595e38b92de09]"
+    build: "ENCRYPTED[!8576e62ae3b4c48e3f56bcec974a8de92b5163e6fff553d6686f946b3c614ee493277b36576777913d45aec0311da91e!]"
+
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
@@ -11,7 +13,6 @@ task:
       memory: 32G
         
   Build-Env-Setup_background_script:
-       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
@@ -20,70 +21,15 @@ task:
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
-       - git config --global user.name "lynnnnzx"
-       - git config --global user.email "rifqikanekii140202@gmail.com"
-       - mkdir -p /tmp/ccache
-       - rclone copy lynx:superior/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
-       - cd /tmp
-       - time tar xf ccache.tar.gz
-       - cd /tmp
 
- 
+
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
-  
-  Sync_script:
-      - echo "============================"
-      - echo "Syncing The Sources..."
-      - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
-      - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/SuperiorOS/manifest -b eleven -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b main .repo/local_manifests
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
-      # DT/VT/KT/TC
-#      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b superior-juice device/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
-#      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
-      - echo "============================"
-      - echo "Sync Completed!"
-      - echo "============================"
 
-  Build_script:
-      - echo "============================"
-      - echo "Starting the Build..."
-      - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Completed!"
-      - echo "============================"
-      - echo "Build Completed!"
-      - echo "============================"
-
-  Upload_script:
-      - echo "============================"
-      - echo "Uploading the Build...."
-      - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/SuperiorOS*.zip lynx:juice -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls SuperiorOS*.zip) Uploaded Successfully!"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-#      - ./ziping.sh
-#      - cd /tmp
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-#      - rclone copy ccache.tar.gz lynx:superior -P
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - ccache --clear
-      - echo " "
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
-      - echo "============================"
-      - echo "Build Uploaded Successfully!"
-      - echo "============================"
+  Build_Kernel_script:
+      - curl -O $build
+      - chmod +x build.sh
+      - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+      - ./build.sh
