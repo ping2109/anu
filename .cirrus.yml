@@ -22,18 +22,16 @@ task:
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
 
-
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
 
-  Build_Kernel_script:
+  Build-Kernel_script:
       - curl -O $build
       - chmod +x build.sh
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-      - export LANGUAGE=en_US.UTF-8
-      - export LC_ALL=en_US.UTF-8
-      - export BOT_TOKEN=$tokentl
-      - export CHAT_ID=$idtl
       - ./build.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/kernel// && ls *.zip) To Your Drive"
+      - rclone copy /tmp/kernel/AnyKernel3/*.zip lynx:kernel -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/kernel/AnyKernel3/ && ls *.zip) Uploaded Successfully!"
