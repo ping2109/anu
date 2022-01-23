@@ -33,5 +33,5 @@ task:
       - chmod +x build.sh
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
       - export BOT_TOKEN=$tokentl
-      - export CHAT_ID=idtl
+      - export CHAT_ID=$idtl
       - ./build.sh
