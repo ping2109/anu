@@ -32,6 +32,4 @@ task:
       - chmod +x build.sh
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
       - ./build.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/kernel// && ls *.zip) To Your Drive"
       - rclone copy /tmp/kernel/AnyKernel3/*.zip lynx:kernel -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/kernel/AnyKernel3/ && ls *.zip) Uploaded Successfully!"
