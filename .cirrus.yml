@@ -1,7 +1,7 @@
 env:
     rcloneconfig: "ENCRYPTED[2aaa874ed2e5234375fc67c195e7e30c78ce131898eff50f3163102006cf60203fd01e00b040ceb5092a01a771de2024]"
-    BOT_TOKEN: "ENCRYPTED[!dc8f55717bb6034d31c082a5aff59baf59658498ed12257f4c6feabeb6e0cc82826c5c5076f589f31d12e047bfeef8dd!]"
-    CHAT_ID: "ENCRYPTED[beb537072d749513bc64623e6c14b5dc34c182690c1fcff3884147aa135b64128f872e55f789dd816d7595e38b92de09]"
+    tokentl: "ENCRYPTED[!dc8f55717bb6034d31c082a5aff59baf59658498ed12257f4c6feabeb6e0cc82826c5c5076f589f31d12e047bfeef8dd!]"
+    idtl: "ENCRYPTED[beb537072d749513bc64623e6c14b5dc34c182690c1fcff3884147aa135b64128f872e55f789dd816d7595e38b92de09]"
     build: "ENCRYPTED[!8576e62ae3b4c48e3f56bcec974a8de92b5163e6fff553d6686f946b3c614ee493277b36576777913d45aec0311da91e!]"
 
 task:
@@ -32,4 +32,6 @@ task:
       - curl -O $build
       - chmod +x build.sh
       - sudo ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+      - export BOT_TOKEN=$tokentl
+      - export CHAT_ID=idtl
       - ./build.sh
