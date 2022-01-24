@@ -21,6 +21,9 @@ task:
        - echo en_US UTF-8 > /etc/locale.gen
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
+       - sudo apt-get install -y locale-all
+       - sudo dpkg-reconfigure locales
+       - sudo locale-gen
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
 
   Storage-Checker_background_script:
