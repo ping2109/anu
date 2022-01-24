@@ -19,11 +19,7 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
-       - sudo apt install -y python3 locales
-       - sudo dpkg-reconfigure locales
-       - sudo locale-gen
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
-       - echo en_US UTF-8 > /etc/locale.gen
 
   Storage-Checker_background_script:
       - df -h
