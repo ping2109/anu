@@ -18,12 +18,12 @@ task:
        - apt install sudo
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
-       - echo en_US UTF-8 > /etc/locale.gen
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install -y python3 locales
        - sudo dpkg-reconfigure locales
        - sudo locale-gen
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
+       - echo en_US UTF-8 > /etc/locale.gen
 
   Storage-Checker_background_script:
       - df -h
@@ -31,10 +31,6 @@ task:
       - ls -l -a -h
 
   Build-Kernel_script:
-      - export LANGUAGE=en_US.UTF-8
-      - export LC_ALL=en_US.UTF-8
-      - export LANG=en_US.UTF-8
-      - export LC_CTYPE=en_US.UTF-8
       - curl -O $script
       - chmod +x build.sh
       - ./build.sh
