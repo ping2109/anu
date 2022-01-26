@@ -2,7 +2,7 @@
 cd /tmp/rom
 
 . build/envsetup.sh
-lunch nad_juice-userdebug
+lunch nad_juice-user
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=cirrus-ci
 export KBUILD_BUILD_USER=LynZx
