@@ -9,10 +9,8 @@ ccache -o compression=true
 ccache -z
 
 . build/envsetup.sh
-lunch nad_ysl-userdebug
+lunch nad_ysl-user
 export BUILD_USERNAME=lynx
 export BUILD_HOSTNAME=serber-uwu
-export KBUILD_BUILD_USER=LynZx
-export KBUILD_BUILD_HOST=Serber-UWU
 export TZ=Asia/Jakarta
 mka nad -j8
