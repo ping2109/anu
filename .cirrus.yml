@@ -25,8 +25,9 @@ task:
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
        - rclone copy lynx:nusantara-ysl/ccache.tar.gz /tmp -P
-       - cd /tmp/ccache
-       - sudo rm -rf *
+       - export CCACHE_DIR=/tmp/ccache
+       - export CCACHE_EXEC=$(which ccache)
+       - ccache --clear
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -42,14 +43,12 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - rm -rf *
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT,VT,KT
       - git clone --depth=1 https://github.com/lynnnnzx/android_device_xiaomi_ysl -b nad-ysl device/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_ysl-1 -b r11.0 vendor/xiaomi/ysl
       - git clone --depth=1 https://github.com/lynnnnzx/android_kernel_xiaomi_ysl -b nad-1 kernel/xiaomi/ysl
-#      - git clone --depth=1 https://github.com/lynnnnzx/gcc-arm64 -b gcc-master prebuilts/gcc/linux-x86/aarch64/eva-gcc
       # HALS
       - rm -rf hardware/qcom-caf/msm8996/audio
       - rm -rf hardware/qcom-caf/msm8996/display
@@ -67,8 +66,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
+      - ./collect.sh
+#      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -78,9 +77,10 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/ysl/Nusantara*.zip lynx:ysl -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/ysl/Nusantara*.zip lynx:ysl -P
+#      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:juice -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/ysl/ && ls Nusantara*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
