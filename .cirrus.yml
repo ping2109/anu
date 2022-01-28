@@ -24,7 +24,7 @@ task:
        - git config --global user.name "lynnnnzx"
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
-       - rclone copy lynx:nusantara/ccache.tar.gz /tmp -P
+       - rclone copy lynx:kasumi/ccache.tar.gz /tmp -P
        - export CCACHE_DIR=/tmp/ccache
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
@@ -43,14 +43,13 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android_manifest -b 11 -g default,-device,-mips,-darwin,-notdefault
-      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b nad-juice .repo/local_manifests
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/ProjectKasumi/android -b kasumi-v1 -g default,-device,-mips,-darwin,-notdefault      - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b nad-juice .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       # DT/VT/KT/TC
-#      - git clone --depth=1 https://github.com/lynnnnzx/device_xiaomi_juice -b nad-juice device/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
-#      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
-#      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b main prebuilts/clang/host/linux-x86/clang-gengkapak
+      - git clone --depth=1 https://github.com/lynnnnzx/dt_xiaomi_juice -b kasumi device/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/prebuilt_vendor_juice -b A11 vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
+      - git clone --depth=1 https://gitlab.com/AnggaR96s/clang-gengkapak -b backup prebuilts/clang/host/linux-x86/clang-gengkapak
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
       - echo "============================"
       - echo "Sync Completed!"
@@ -61,9 +60,9 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
+      - ./collect.sh
+#      - ./final.sh
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
       - echo "============================"
@@ -72,15 +71,15 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/Nusantara*.zip lynx:juice -P
-      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:juice -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Uploaded Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) To Your Drive"
+      - rclone copy /tmp/rom/out/target/product/juice/Kasumi*.zip lynx:juice -P
+      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:kasumi -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:nusantara -P
+      - rclone copy ccache.tar.gz lynx:kasumi -P
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
