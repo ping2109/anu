@@ -57,8 +57,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-      - ./collect.sh
-#      - ./final.sh
+#      - ./collect.sh
+      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -68,10 +68,10 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/Kasumi*.zip lynx:juice -P
-#      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:kasumi -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Uploaded Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) To Your Drive"
+      - rclone copy /tmp/rom/out/target/product/juice/Kasumi*.zip lynx:juice -P
+      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:kasumi -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
@@ -81,7 +81,7 @@ task:
       - export CCACHE_EXEC=$(which ccache)
       - ccache --clear
       - echo " "
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
       - echo "Build Uploaded Successfully!"
       - echo "============================"
