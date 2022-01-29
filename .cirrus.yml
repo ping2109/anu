@@ -43,6 +43,7 @@ task:
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
+      - ls
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/ProjectKasumi/android -b kasumi-v1 -g default,-device,-mips,-darwin,-notdefault
       - git clone --depth=1 https://github.com/lynnnnzx/local_manifest.git -b kasumi .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
@@ -57,8 +58,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-#      - ./collect.sh
-      - ./final.sh
+      - ./collect.sh
+#     - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -68,10 +69,10 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/Kasumi*.zip lynx:juice -P
-      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:kasumi -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) To Your Drive"
+#      - rclone copy /tmp/rom/out/target/product/juice/Kasumi*.zip lynx:juice -P
+#      - rclone copy /tmp/rom/out/target/product/juice/system/build.prop lynx:kasumi -P
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Kasumi*.zip) Uploaded Successfully!"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
