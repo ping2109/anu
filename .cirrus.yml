@@ -55,7 +55,7 @@ task:
       - echo "============================"
       - echo "Sync Completed!"
       - echo "============================"
-
+ 
   Build_script:
       - echo "============================"
       - echo "Starting the Build..."
