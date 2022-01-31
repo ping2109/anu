@@ -5,8 +5,8 @@ env:
     anu: "ENCRYPTED[!f3f6c4b8e9175eb7d5b3b10c0a17927998a9eb539e1f08dd8f7ed2746d6af6a7dd3056b9438a1db858392c7254bcd506!]"
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading..."
-  timeout_in: 480m  
+  name: "Setup, Sync, Build and Upload..."
+  timeout_in: 90m  
   container:
       image: 20020214/lynzx:latest
       cpu: 8
