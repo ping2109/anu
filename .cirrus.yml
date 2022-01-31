@@ -27,6 +27,9 @@ task:
        - git config --global user.email "rifqikanekii140202@gmail.com"
        - mkdir -p /tmp/ccache
        - rclone copy lynx:sakura/ccache.tar.gz /tmp -P
+#       - export CCACHE_DIR=/tmp/ccache
+#       - export CCACHE_EXEC=$(which ccache)
+#       - ccache --clear
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -57,8 +60,8 @@ task:
       - echo "Starting the Build..."
       - echo "============================"
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
-     - ./collect.sh
-#      - ./final.sh
+#     - ./collect.sh
+      - ./final.sh
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Completed!"
       - echo "============================"
       - echo "Build Completed!"
@@ -68,19 +71,19 @@ task:
       - echo "============================"
       - echo "Uploading the Build...."
       - echo "============================"
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/ProjectSakura*.zip lynx:juice -P
-#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Uploaded Successfully!"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
-      - ./ziping.sh
-      - cd /tmp
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:sakura -P
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - ccache --clear
-      - echo " "
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) To Your Drive"
+      - rclone copy /tmp/rom/out/target/product/juice/ProjectSakura*.zip lynx:juice -P
+      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls ProjectSakura*.zip) Uploaded Successfully!"
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
+#      - ./ziping.sh
+#      - cd /tmp
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+#      - rclone copy ccache.tar.gz lynx:sakura -P
+#      - export CCACHE_DIR=/tmp/ccache
+#      - export CCACHE_EXEC=$(which ccache)
+#      - ccache --clear
+#      - echo " "
+#      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
       - echo "Build Uploaded Successfully!"
       - echo "============================"
