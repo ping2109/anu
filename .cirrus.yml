@@ -43,6 +43,7 @@ task:
       - echo "============================"
       - echo "Syncing The Sources..."
       - echo "============================"
+       - mkdir -p /tmp/rom
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/lynnnnzx/android.git -b patch-1 -g default,-device,-mips,-darwin,-notdefault
