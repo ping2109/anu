@@ -15,3 +15,4 @@ mka bacon -j8 &
 sleep 60m
 kill %1
 ccache -s
+
