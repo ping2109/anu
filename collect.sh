@@ -12,6 +12,6 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 make bacon -j8 &
-sleep 90m
+sleep 105m
 kill %1
 ccache -s
