@@ -7,7 +7,7 @@ task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
   container:
-      image: 20020214/lynzx:latest
+      image: inok2341/anu:latest
       cpu: 8
       memory: 32G
       
@@ -77,9 +77,6 @@ task:
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz lynx:lineage-fe -P
-      - export CCACHE_DIR=/tmp/ccache
-      - export CCACHE_EXEC=$(which ccache)
-      - ccache --clear
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
       - echo "============================"
