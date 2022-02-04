@@ -44,7 +44,8 @@ task:
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_device_xiaomi_juice-q.git -b 10.staging device/xiaomi/juice
       - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_kernel_xiaomi_juice-q.git -b frost.staging kernel/xiaomi/juice
-      - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_vendor_xiaomi_juice-q.git -b 10 vendor/xiaomi/juice      
+      - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_vendor_xiaomi_juice-q.git -b 10 vendor/xiaomi/juice
+      - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
