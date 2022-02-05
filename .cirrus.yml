@@ -1,8 +1,6 @@
 env:
-    rcloneconfig: "ENCRYPTED[!9f81da4162dc16855010f240d3286f375c27728a69e6914e2176d084ab84834123f58ab38a8d58a9045ca289b356ffe7!]"
-    tokentl: "ENCRYPTED[!ae59da153d5f935b3881c1893275b291da5839a0053b0fb4bb8181be51235ed22c507590188eb689e8688330a37fa345!]"
-    idtl: "ENCRYPTED[!56736621437270350d1544901100e462298ee6e58797da7f214f748f84c3e85dad01991898a7fd6cc0f5a407e917aaea!]"
-    anu: "ENCRYPTED[!a333650e875c44dcc422f0bdfeb33e418ff603be43470ee3c6afe6cf553ddf0de06ba1498df523878139003e44d41559!]"
+    rcloneconfig: "ENCRYPTED[8051df642acc633b040a4631589408aa4338bb68da675bcdd77d7bf2ab7b6d7ccd3be22a755009b992d3b2fd26a93a8d]"
+    anu: "ENCRYPTED[f9aa3070d1fafb13e576840465991c2b79b3089777fd43a9872db6a05c9e2ca77f37432a4e1bd9bfdb6ca735ed973333]"
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
@@ -12,7 +10,7 @@ task:
       memory: 32G
  
   Build-Env-Setup_background_script:
-       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
+    #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
@@ -21,13 +19,13 @@ task:
        - DEBIAN_FRONTEND=noninteractive
        - sudo apt install python3 -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
-       - git config --global user.name "lynnnnzx"
-       - git config --global user.email "rifqikanekii140202@gmail.com"
+       - git config --global user.name "imannig"
+       - git config --global user.email "akugedekntl@gmail.com"
        - mkdir -p /tmp/ccache
        - export CCACHE_DIR=/tmp/ccache
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
-       - rclone copy lynx:nusantara-juice-10/ccache.tar.gz /tmp -P
+       - rclone copy cirrus:nusantara-juice-10/ccache.tar.gz /tmp -P
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -38,30 +36,30 @@ task:
       - ls -l -a -h
   
   Sync_script:
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
+   #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
-      - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_device_xiaomi_juice-q.git -b 10.staging device/xiaomi/juice
-      - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_kernel_xiaomi_juice-q.git -b frost.staging kernel/xiaomi/juice
-      - git clone --depth=1 https://$anu@github.com/lynnnnzx/android_vendor_xiaomi_juice-q.git -b 10 vendor/xiaomi/juice
+      - git clone --depth=1 https://$anu@github.com/frostg012/android_device_xiaomi_juice-q.git -b 10.staging device/xiaomi/juice
+      - git clone --depth=1 https://$anu@github.com/frostg012/android_kernel_xiaomi_juice-q.git -b frost.staging kernel/xiaomi/juice
+      - git clone --depth=1 https://$anu@github.com/AIV-97/android_vendor_xiaomi_juice-q.git -b 10 vendor/xiaomi/juice
       - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
+   #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build Started!"
       - ./collect.sh
 #      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
+    #  - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Completed!"
 
   Upload_script:
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) To Your Drive"
-#      - rclone copy /tmp/rom/out/target/product/juice/Nusantara*.zip lynx:juice -P
+#      - rclone copy /tmp/rom/out/target/product/juice/Nusantara*.zip cirrus:juice -P
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Uploaded Successfully!"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
+    #  - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz lynx:nusantara-juice-10 -P
+      - rclone copy ccache.tar.gz cirrus:nusantara-juice-10 -P
       - echo " "
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
