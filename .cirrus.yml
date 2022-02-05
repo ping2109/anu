@@ -25,7 +25,7 @@ task:
        - export CCACHE_DIR=/tmp/ccache
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
-       - rclone copy cirrus:nad-jus-q/ccache.tar.gz /tmp -P
+       - rclone copy cirrus:los-jus-q/ccache.tar.gz /tmp -P
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -38,7 +38,7 @@ task:
   Sync_script:
    #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10 -g default,-device,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u git://github.com/LineageOS/android.git -b lineage-17.0 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - git clone --depth=1 https://$anu@github.com/frostg-012/device-xiaomi-juice.git -b 10.staging device/xiaomi/juice
       - git clone --depth=1 https://$anu@github.com/frostg-012/kernel_ximi_juice.git -b frost.staging kernel/xiaomi/juice
