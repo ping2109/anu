@@ -25,7 +25,7 @@ task:
        - export CCACHE_DIR=/tmp/ccache
        - export CCACHE_EXEC=$(which ccache)
        - ccache --clear
-       - rclone copy cirrus:nad-jus-q/ccache.tar.gz /tmp -P
+       - rclone copy cirrus:rr-jus-q/ccache.tar.gz /tmp -P
        - cd /tmp
        - time tar xf ccache.tar.gz
        - cd /tmp
@@ -43,9 +43,9 @@ task:
   Sync_script:
    #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
       - cd /tmp/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10 -g default,-device,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
-      - git clone --depth=1 https://$anu@github.com/frostg-012/device-xiaomi-juice.git -b 10.staging device/xiaomi/juice
+      - git clone --depth=1 https://$anu@github.com/imannig/device-xiaomi-juice.git -b rr device/xiaomi/juice
       - git clone --depth=1 https://$anu@github.com/frostg-012/vendor-xiaomi-juice.git vendor/xiaomi/juice
       - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
   #    - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
@@ -63,7 +63,7 @@ task:
     #  - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
       - cd /tmp
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz cirrus:nad-jus-q -P
+     # - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
+      - rclone copy ccache.tar.gz cirrus:rr-jus-q -P
       - echo " "
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
+     # - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Ccache Successfully!"
