@@ -41,8 +41,7 @@ task:
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/NusantaraProject-ROM/android_manifest.git -b 10 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - git clone --depth=1 https://$anu@github.com/frostg-012/device-xiaomi-juice.git -b 10.staging device/xiaomi/juice
-      - git clone --depth=1 https://$anu@github.com/frostg-012/kernel_ximi_juice.git -b frost.staging kernel/xiaomi/juice
-      - git clone --depth=1 https://$anu@github.com/AIV-97/android_vendor_xiaomi_juice.git -b 10 vendor/xiaomi/juice
+      - git clone --depth=1 https://$anu@github.com/frostg-012/vendor-xiaomi-juice.git -b 10 vendor/xiaomi/juice
       - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
   #    - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
