@@ -17,7 +17,7 @@ task:
        - mkdir -p ~/.config/rclone
        - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
-       - sudo apt install python3 -y
+       - sudo apt install python3 tmate -y
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "imannig"
        - git config --global user.email "akugedekntl@gmail.com"
@@ -34,6 +34,11 @@ task:
       - df -h
       - lsblk
       - ls -l -a -h
+
+  Tmate:
+      - tmate -S /tmp/tmate.sock new-session -d
+      - tmate -S /tmp/tmate.sock wait tmate-ready
+      - tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
   
   Sync_script:
    #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
