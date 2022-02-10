@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 1m
+
 cd /tmp
 
 com ()
@@ -8,5 +10,3 @@ com ()
 }
 
 time com ccache 1
-
-sleep 1m
