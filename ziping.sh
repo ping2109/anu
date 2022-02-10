@@ -8,3 +8,5 @@ com ()
 }
 
 time com ccache 1
+
+sleep 1m
