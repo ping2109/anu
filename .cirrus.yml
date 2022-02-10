@@ -5,7 +5,7 @@ task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
   container:
-      image: 20020214/lynzx:latest
+      image: inok2341/anu:latest
       cpu: 8
       memory: 32G
  
@@ -21,28 +21,20 @@ task:
        - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "imannig"
        - git config --global user.email "akugedekntl@gmail.com"
-       - mkdir -p /tmp/ccache
-       - export CCACHE_DIR=/tmp/ccache
-       - export CCACHE_EXEC=$(which ccache)
-       - ccache --clear
-       - rclone copy cirrus:rr-jus-q/ccache.tar.gz /tmp -P
-       - cd /tmp
+       - mkdir -p ~/ccache
+       - rclone copy cirrus:rr-jus-q/ccache.tar.gz ~/ -P
+       - cd ~/
        - time tar xf ccache.tar.gz
-       - cd /tmp
+       - cd ~/
  
   Storage-Checker_background_script:
       - df -h
       - lsblk
       - ls -l -a -h
-
-  Tmate:
-      - tmate -S /tmp/tmate.sock new-session -d
-      - tmate -S /tmp/tmate.sock wait tmate-ready
-      - tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
-  
+      
   Sync_script:
    #   - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start Sync Source"
-      - cd /tmp/rom
+      - cd ~/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - git clone --depth=1 https://$anu@github.com/imannig/device-xiaomi-juice.git -b rr device/xiaomi/juice
@@ -62,7 +54,7 @@ task:
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Uploaded Successfully!"
     #  - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
-      - cd /tmp
+      - cd ~/
      # - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
       - rclone copy ccache.tar.gz cirrus:rr-jus-q -P
       - echo " "
