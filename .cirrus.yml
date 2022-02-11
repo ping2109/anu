@@ -56,7 +56,7 @@ task:
 
   Upload_script:
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) To Your Drive"
-      - rclone copy /tmp/rom/out/target/product/juice/Nusantara*.zip cirrus:juice -P
+      - rclone copy /tmp/rom/out/target/product/juice/RROS*.zip cirrus:juice -P
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/juice/ && ls Nusantara*.zip) Uploaded Successfully!"
     #  - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compres ccache"
       - ./ziping.sh
