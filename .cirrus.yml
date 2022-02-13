@@ -45,7 +45,6 @@ task:
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
       - git clone --depth=1 https://$anu@github.com/imannig/device-xiaomi-juice.git device/xiaomi/juice
       - git clone --depth=1 https://$anu@github.com/frostg-012/vendor-xiaomi-juice.git vendor/xiaomi/juice
-      - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
   #    - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
