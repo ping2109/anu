@@ -43,7 +43,7 @@ task:
       - cd /tmp/rom
       - repo init -q --no-repo-verify --depth=1 -u git://github.com/AospExtended/manifest.git -b 12.x -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
-      - git clone --depth=1 https://github.com/imannig/juice_12_s.git device/xiaomi/juice
+      - git clone --depth=1 https://github.com/imannig/device_xiaomi_juice.git device/xiaomi/juice
       - git clone --depth=1 git://github.com/NusantaraROM-Devices/vendor_xiaomi_juice.git -b 12 vendor/xiaomi/juice
       - git clone --depth=1 git://github.com/greenforce-project/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
       - git clone --depth=1 git://github.com/kdrag0n/proton-clang prebuilts/clang/host/linux-x86/clang-proton
