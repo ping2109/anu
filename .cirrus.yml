@@ -47,7 +47,7 @@ task:
       - git clone --depth=1 git://github.com/NusantaraROM-Devices/vendor_xiaomi_juice.git -b 12 vendor/xiaomi/juice
       - git clone --depth=1 git://github.com/greenforce-project/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
       - git clone --depth=1 git://github.com/kdrag0n/proton-clang prebuilts/clang/host/linux-x86/clang-proton
-     # - rm -rf device/xiaomi/juice/sepolicy/private/hal_power_default.te
+      - rm -rf packages/modules/Virtualization
 #      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
 
   Build_script:
