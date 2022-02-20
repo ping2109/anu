@@ -45,7 +45,7 @@ task:
       - echo "============================"
       - mkdir -p ~/rom
       - cd ~/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/exthmui/android.git -b exthm-12 -g default,-device,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/exthmui/android.git -b exthm-12 -g default,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
       - git clone --depth=1 https://github.com/imannig/xiaomi_juice-s.git -b exthm device/xiaomi/juice
       - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_juice.git -b twelve vendor/xiaomi/juice
