@@ -48,7 +48,7 @@ task:
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/exthmui/android.git -b exthm-12 -g default,-device,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
       - git clone --depth=1 https://github.com/imannig/xiaomi_juice-s.git -b exthm device/xiaomi/juice
-      - git clone --depth=1 git://github.com/lynnnnzx/vndroid_vendor_xiaomi_juice.git -b twelve vendor/xiaomi/juice
+      - git clone --depth=1 https://github.com/lynnnnzx/android_vendor_xiaomi_juice.git -b twelve vendor/xiaomi/juice
       - git clone --depth=1 git://github.com/greenforce-project/kernel_xiaomi_citrus_sm6115 -b rvc-inline kernel/xiaomi/juice
       - rm -rf prebuilts/clang/host/linux-x86/clang-r445002
       - git clone --depth=1 https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r445002.git -b 12.0 --single-branch prebuilts/clang/host/linux-x86/clang-r445002
