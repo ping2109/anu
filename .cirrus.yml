@@ -16,7 +16,7 @@ task:
        - echo "$rcloneconfig" > ~/.rclone.conf
        - git config --global user.name "imannig"
        - git config --global user.email "akugedekntl@gmail.com"
-       - rclone copy cirrus:elixir-jus-s/ccache.tar.gz ~/ -P
+       - rclone copy cirrus:elixir1-jus-s/ccache.tar.gz ~/ -P
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
@@ -35,7 +35,7 @@ task:
       - mkdir -p ~/rom
       - cd ~/rom
       - repo init -q --no-repo-verify --depth=1 -u https://github.com/Project-Elixir/manifest -b snow -g default,-mips,-darwin,-notdefault
-      - git clone https://github.com/imannig/local_manifest -b twelve-elixir .repo/local_manifests
+      - git clone https://github.com/imannig/local_manifest -b twelve-elixir-1 .repo/local_manifests
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8    
       - echo "============================"
       - echo "Sync Completed!"
