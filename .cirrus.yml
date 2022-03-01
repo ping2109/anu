@@ -1,7 +1,7 @@
 env:
     rcloneconfig: "ENCRYPTED[8051df642acc633b040a4631589408aa4338bb68da675bcdd77d7bf2ab7b6d7ccd3be22a755009b992d3b2fd26a93a8d]"
     anu: "ENCRYPTED[f9aa3070d1fafb13e576840465991c2b79b3089777fd43a9872db6a05c9e2ca77f37432a4e1bd9bfdb6ca735ed973333]"
-    lunch: lunch aosp_juice-userdebug
+    lunch: lunch aosp_juice-user
     make: make bacon
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
