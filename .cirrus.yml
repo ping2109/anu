@@ -2,7 +2,7 @@ env:
     rcloneconfig: "ENCRYPTED[3f141fcf6edda367c3618021b8ffeef6683b19dee14e096ab0db284f71144e7bc3e2c6f10b601e5879306d01bbb38afd]"
     anu:
     lunch: lunch lineage_j7xelte-userdebug
-    make: brunch j7xelte
+    make: make
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 480m  
