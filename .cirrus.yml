@@ -16,7 +16,7 @@ task:
        - echo "$rcloneconfig" > ~/.rclone.conf
        - git config --global user.name "imannig"
        - git config --global user.email "akugedekntl@gmail.com"
-       - rclone copy ping2109drive:los-j7x-q/ccache.tar.gz ~/ -P
+       - rclone copy ping2109drive:los-j6-q/ccache.tar.gz ~/ -P
        - cd ~/
        - time tar xf ccache.tar.gz
        - cd ~/
@@ -34,14 +34,19 @@ task:
       - echo "============================"
       - mkdir -p ~/rom
       - cd ~/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/LineageOS/android.git -b lineage-17.1 -g default,-mips,-darwin,-notdefault
+      - repo init -q --no-repo-verify --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1 -g default,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_universal7870-common.git -b lineage-17.1 device/samsung/universal7870-common
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_j7xelte.git -b crdroid device/samsung/j7xelte
-      - git clone --depth=1 https://github.com/ping2109/NevaKernel-7870.git kernel/samsung/exynos7870
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_universal7870-common.git vendor/samsung/universal7870-common
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_j7xelte.git vendor/samsung/j7xelte
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_hardware_samsung.git -b lineage-17.1 hardware/samsung
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_universal7870-common.git -b lineage-18.1 device/samsung/universal7870-common
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_j6lte.git -b lineage-18.1 device/samsung/j6lte
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870.git -b aosp-11 kernel/samsung/exynos7870
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_universal7870-common.git -b lineage-18.1 vendor/samsung/universal7870-common
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_j6lte.git -b common vendor/samsung/j6lte
+      - git clone --depth=1 https://github.com/samsungexynos7870/android_hardware_samsung.git -b lineage-18.1 hardware/samsung
+      
+      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos.git -b lineage-18.1 hardware/samsung_slsi/exynos
+      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos5.git -b lineage-18.1 hardware/samsung_slsi/exynos5
+      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos7870.git -b lineage-18.1 hardware/samsung_slsi/exynos7870
+      
       - echo "============================"
       - echo "Sync Completed!"
       - echo "============================"
@@ -62,6 +67,6 @@ task:
       - ./ziping.sh
       - cd ~/
      # - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz ping2109drive:los-j7x-q -P
+      - rclone copy ccache.tar.gz ping2109drive:los-j6-q -P
       - echo " "
      # - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploadinig Ccahchhe Successyffully!"
