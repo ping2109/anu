@@ -35,7 +35,7 @@ task:
       - mkdir -p ~/rom
       - cd ~/rom
       - repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
-      - git clone https://github.com/samsungexynos7870/android_manifest_samsung_j6lte.git -b lineage-18.1 .repo/local_manifests
+      - repo sync --no-repo-verify -c --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j`nproc`
       - git clone https://github.com/samsungexynos7870/android_device_samsung_universal7870-common.git -b lineage-18.1 device/samsung/universal7870-common
       - git clone https://github.com/samsungexynos7870/android_device_samsung_j6lte.git -b lineage-18.1 device/samsung/j6lte
       - git clone https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870.git -b aosp-11 kernel/samsung/exynos7870
