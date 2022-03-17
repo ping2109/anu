@@ -34,18 +34,18 @@ task:
       - echo "============================"
       - mkdir -p ~/rom
       - cd ~/rom
-      - repo init -q --no-repo-verify --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1 -g default,-mips,-darwin,-notdefault
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_universal7870-common.git -b lineage-18.1 device/samsung/universal7870-common
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_device_samsung_j6lte.git -b lineage-18.1 device/samsung/j6lte
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870.git -b aosp-11 kernel/samsung/exynos7870
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_universal7870-common.git -b lineage-18.1 vendor/samsung/universal7870-common
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_vendor_samsung_j6lte.git -b common vendor/samsung/j6lte
-      - git clone --depth=1 https://github.com/samsungexynos7870/android_hardware_samsung.git -b lineage-18.1 hardware/samsung
+      - repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+      - git clone https://github.com/samsungexynos7870/android_manifest_samsung_j6lte.git -b lineage-18.1 .repo/local_manifests
+      - git clone https://github.com/samsungexynos7870/android_device_samsung_universal7870-common.git -b lineage-18.1 device/samsung/universal7870-common
+      - git clone https://github.com/samsungexynos7870/android_device_samsung_j6lte.git -b lineage-18.1 device/samsung/j6lte
+      - git clone https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870.git -b aosp-11 kernel/samsung/exynos7870
+      - git clone https://github.com/samsungexynos7870/android_vendor_samsung_universal7870-common.git -b lineage-18.1 vendor/samsung/universal7870-common
+      - git clone https://github.com/samsungexynos7870/android_vendor_samsung_j6lte.git -b common vendor/samsung/j6lte
+      - git clone https://github.com/samsungexynos7870/android_hardware_samsung.git -b lineage-18.1 hardware/samsung
       
-      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos.git -b lineage-18.1 hardware/samsung_slsi/exynos
-      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos5.git -b lineage-18.1 hardware/samsung_slsi/exynos5
-      - git clone --depth=1 https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos7870.git -b lineage-18.1 hardware/samsung_slsi/exynos7870
+      - git clone https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos.git -b lineage-18.1 hardware/samsung_slsi/exynos
+      - git clone https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos5.git -b lineage-18.1 hardware/samsung_slsi/exynos5
+      - git clone https://github.com/TALUAtGitHub/android_hardware_samsung_slsi_exynos7870.git -b lineage-18.1 hardware/samsung_slsi/exynos7870
       
       - echo "============================"
       - echo "Sync Completed!"
