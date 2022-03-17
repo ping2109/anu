@@ -13,6 +13,6 @@ export BUILD_BROKEN_MISSING_REQUIRED_MODULES=false
 mka clean && mka api-stubs-docs && mka hiddenapi-lists-docs && mka system-api-stubs-docs && mka test-api-stubs-docs
 ccache -M 8G -F 0
 $lunch
-$mka bacon -j16 &
+$make bacon -j16 &
 kill %1
 ccache -s
