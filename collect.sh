@@ -11,7 +11,6 @@ export ALLOW_MISSING_DEPENDENCIES=true
 export BUILD_BROKEN_MISSING_REQUIRED_MODULES=false
 ccache -M 8G -F 0
 $lunch
-$make -j8 &
-sleep 100m
+$make -j16 &
 kill %1
 ccache -s
