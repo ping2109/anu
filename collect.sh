@@ -15,7 +15,7 @@ export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 export BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES=true
 ccache -M 8G -F 0
 $lunch
-$make -j32 &
+$make -j8 &
 sleep 100m
 kill %1
 ccache -s 
