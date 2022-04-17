@@ -11,7 +11,7 @@ export USE_CCACHE=1
 export ALLOW_MISSING_DEPENDENCIES=true
 ccache -M 8G -F 0
 $lunch
-$make -j32 &
-sleep 99m
+$make &
+sleep 100m
 kill %1
 ccache -s 
